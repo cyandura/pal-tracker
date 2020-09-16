@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class PalTrackerApplication implements CommandLineRunner {
@@ -23,5 +24,10 @@ public class PalTrackerApplication implements CommandLineRunner {
     public void run(String... args){
         logger.info("Persons Age: "+ person.age);
         logger.info("Persons Name: "+ person.name);
+    }
+
+    @Bean
+    public TimeEntryRepository getRepo(){
+        return new InMemoryTimeEntryRepository();
     }
 }
