@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import javax.sql.DataSource;
+
 @SpringBootApplication
 public class PalTrackerApplication implements CommandLineRunner {
 
@@ -27,7 +29,7 @@ public class PalTrackerApplication implements CommandLineRunner {
     }
 
     @Bean
-    public TimeEntryRepository getRepo(){
-        return new InMemoryTimeEntryRepository();
+    public TimeEntryRepository getRepo(DataSource dataSource){
+        return new JdbcTimeEntryRepository(dataSource);
     }
 }
